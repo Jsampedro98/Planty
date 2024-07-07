@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap");
+
+body {
+  font-family: "Syne", sans-serif;
+}
+
+/* HEADER */
+
+#menu-item-38 {
+  background-color: #db9f95;
+}
+
+#menu-item-38 .text-wrap {
+  color: white;
+}
+
+#menu-item-38 :hover {
+  background-color: #bf2e43;
+}
