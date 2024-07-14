@@ -17,3 +17,104 @@ body {
 #menu-item-38 :hover {
   background-color: #bf2e43;
 }
+
+/*Contact Form 7 */
+
+/* Preorder Ammount */
+
+.wpcf7-form-control-wrap {
+  font-family: "Inter", sans-serif;
+}
+
+#Quantites-de-fraises {
+  display: block;
+  width: 39px;
+  height: 56px;
+  text-align: center;
+  background-color: white;
+}
+
+#Quantites-de-pamplemousses {
+  display: block;
+  width: 39px;
+  height: 56px;
+  text-align: center;
+  background-color: white;
+}
+
+#Quantites-de-framboises {
+  display: block;
+  width: 39px;
+  height: 56px;
+  text-align: center;
+  background-color: white;
+}
+
+#Quantites-de-citrons {
+  display: block;
+  width: 39px;
+  height: 56px;
+  text-align: center;
+  background-color: white;
+}
+
+/* Preorder Form */
+
+.form-container {
+  font-family: "Syne", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.form-column {
+  width: 45%;
+}
+
+.form-column h2 {
+  color: white;
+  font-size: 24px;
+}
+
+.form-column p {
+  margin-bottom: 20px;
+}
+
+.form-column label {
+  display: block;
+  color: white;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.form-column input[type="text"],
+.form-column input[type="email"] {
+  background-color: white;
+  width: 383px;
+  height: 71px;
+  padding: 10px;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+.submit-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.submit-container input[type="submit"] {
+  font-family: "Syne", sans-serif;
+  font-size: 15px;
+  background-color: #e0b9b4;
+  color: white;
+  width: 198px;
+  height: 55px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-container input[type="submit"]:hover {
+  background-color: #c02e44;
+}
