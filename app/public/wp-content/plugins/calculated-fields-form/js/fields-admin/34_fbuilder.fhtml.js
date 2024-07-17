@@ -15,7 +15,9 @@
 			_developerNotes:'',
 			fcontent: "",
 			initAdv:function(){
-					delete this.advanced;
+					delete this.advanced.css['label'];
+					delete this.advanced.css['input'];
+					delete this.advanced.css['help'];
 				},
 			display:function( css_class )
 				{
@@ -77,7 +79,7 @@
 				},
 			showAllSettings:function()
 				{
-					return this.showFieldType()+this.showName()+this.showContent()+this.showCsslayout();
+					return this.fieldSettingsTabs(this.showFieldType()+this.showName()+this.showContent()+this.showCsslayout());
 				}
 		}
 	);

@@ -12,7 +12,7 @@
 			show:function()
 				{
 					this.predefined = this._getAttr('predefined', true);
-					return '<div class="fields '+cff_esc_attr(this.csslayout)+' '+this.name+' cff-qrcode-field" id="field'+this.form_identifier+'-'+this.index+'"><label for="'+this.name+'" style="'+cff_esc_attr(this.getCSSComponent('label'))+'">'+this.title+''+((this.required)?"<span class='r'>*</span>":"")+'</label><div class="dfield">'+
+					return '<div class="fields '+cff_esc_attr(this.csslayout)+' '+this.name+' cff-qrcode-field" id="field'+this.form_identifier+'-'+this.index+'" style="'+cff_esc_attr(this.getCSSComponent('container'))+'"><label for="'+this.name+'" style="'+cff_esc_attr(this.getCSSComponent('label'))+'">'+this.title+''+((this.required)?"<span class='r'>*</span>":"")+'</label><div class="dfield">'+
 					'<div id="'+this.name+'_qrcontainer" class="'+this.size+' cff-qrcode-container"></div>'+
 					'<input aria-label="'+cff_esc_attr(this.title)+'" id="'+this.name+'" name="'+this.name+'"'+' class="field '+this.size+((this.required)?" required":"")+'" '+' '+((this.readonly)?'readonly':'')+' type="text" value="'+cff_esc_attr(this.predefined)+'" style="'+cff_esc_attr(this.getCSSComponent('input'))+'" /><span class="uh" style="'+cff_esc_attr(this.getCSSComponent('help'))+'">'+this.userhelp+'</span></div><div class="clearer"></div></div>';
 				},

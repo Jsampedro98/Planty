@@ -164,6 +164,16 @@ cff_forms_templates = {
             "category": "Financial",
             "description": "Get the European countries VAT.",
             "id": 14
+        }, {
+            "title": "Pay Raise Percent Calculator",
+            "category": "Financial",
+            "description": "Allows users to easily determine their pay raise/decrease percentage, salary differentials, and more.",
+            "id": 42
+        }, {
+            "title": "Life Insurance Calculator",
+            "category": "Financial",
+            "description": "Life Insurance Calculator calculate life insurance based on age, annual income, number of dependents, and current liabilities.",
+            "id": 43
         }
     ],
     "pro": [

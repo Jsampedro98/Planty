@@ -19,7 +19,9 @@
 			rearrange: 0,
 			collapsed:false,
 			initAdv:function(){
-					delete this.advanced;
+					delete this.advanced.css['label'];
+					delete this.advanced.css['input'];
+					delete this.advanced.css['help'];
 				},
 			display:function( css_class )
 				{

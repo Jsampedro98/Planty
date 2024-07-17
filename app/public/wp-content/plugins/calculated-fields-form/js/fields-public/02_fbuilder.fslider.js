@@ -207,7 +207,7 @@
 							return str;
 						};
 						me.predefined = (/^\s*$/.test(me.predefined)) ? me.min : me._toNumber(me._getAttr('predefined'));
-						return '<div class="fields '+cff_esc_attr(me.csslayout)+' '+me.name+' cff-slider-field" id="field'+me.form_identifier+'-'+me.index+'">'+
+						return '<div class="fields '+cff_esc_attr(me.csslayout)+' '+me.name+' cff-slider-field" id="field'+me.form_identifier+'-'+me.index+'" style="'+cff_esc_attr(me.getCSSComponent('container'))+'">'+
 							'<label style="'+cff_esc_attr(me.getCSSComponent('label'))+'">'+me.title+'</label>'+
 							'<div class="dfield slider-container">'+
 								typeValuesComponents()+

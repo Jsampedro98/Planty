@@ -9,7 +9,7 @@
 			rearrange: 0,
 			show:function()
 				{
-					return '<div class="fields '+cff_esc_attr(this.csslayout)+' '+this.name+' cff-div-field cff-container-field" id="field'+this.form_identifier+'-'+this.index+'"><div id="'+this.name+'"></div><div class="clearer"></div></div>';
+					return '<div class="fields '+cff_esc_attr(this.csslayout)+' '+this.name+' cff-div-field cff-container-field" id="field'+this.form_identifier+'-'+this.index+'" style="'+cff_esc_attr(this.getCSSComponent('container'))+'"><div id="'+this.name+'"></div><div class="clearer"></div></div>';
 				},
 			after_show: function()
 				{

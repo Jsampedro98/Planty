@@ -27,6 +27,7 @@
 					delete this.advanced.css.help;
 					if ( ! ( 'legend' in this.advanced.css ) ) this.advanced.css.legend = {label: 'Legend',rules:{}};
 					if ( ! ( 'container' in this.advanced.css ) ) this.advanced.css.container = {label: 'Fields container',rules:{}};
+					else this.advanced.css.container.label = 'Fields container';
 				},
 			display:function( css_class )
 				{

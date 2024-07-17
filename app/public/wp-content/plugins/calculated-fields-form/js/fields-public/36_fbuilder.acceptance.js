@@ -25,9 +25,9 @@
 						label = '<a href="javascript:void(0);" class="cff-open-dlg" style="'+cff_esc_attr(me.getCSSComponent('choice'))+'">'+label+'</a>';
 						dlg += '<div class="cff-dialog hide"><span class="cff-close-dlg"></span><div class="cff-dialog-content" style="'+cff_esc_attr(me.getCSSComponent('text'))+'">'+me.message+'</div></div>'
 					}
-					return '<div class="fields '+cff_esc_attr(me.csslayout)+(this.onoff ? ' cff-switch-container' : '')+' '+me.name+' cff-checkbox-field" id="field'+me.form_identifier+'-'+me.index+'"><div class="dfield">'+
+					return '<div class="fields '+cff_esc_attr(me.csslayout)+(me.onoff ? ' cff-switch-container' : '')+' '+me.name+' cff-checkbox-field" id="field'+me.form_identifier+'-'+me.index+'" style="'+cff_esc_attr(me.getCSSComponent('container'))+'"><div class="dfield">'+
 					'<div class="one_column"><label for="'+me.name+'"><input aria-label="'+cff_esc_attr(me.title)+'" name="'+me.name+'" id="'+me.name+'" class="field required" value="'+cff_esc_attr(me.value)+'" vt="'+cff_esc_attr((/^\s*$/.test(me.value)) ? me.title : me.value)+'" type="checkbox" /> '+
-                    (this.onoff ? '<span class="cff-switch"></span>': '') +
+                    (me.onoff ? '<span class="cff-switch"></span>': '') +
                     '<span>'+
 					cff_html_decode(label)+''+((me.required)?'<span class="r">*</span>':'')+
 					'</span></label></div>'+dlg+'</div><div class="clearer"></div></div>';

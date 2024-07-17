@@ -290,6 +290,7 @@
 		$.fbuilder[ 'editForm' ] = function()
 			{
 				$('#tabs-3').html(theForm.showAllSettings());
+				$('#tabs-3')[0].scrollTop = 0;
 				selected = -1;
 
 				$("#calculated-fields-form-category-mirror").on( 'keyup', function()
@@ -1245,7 +1246,7 @@
 			rule  = rule  || '';
 			value = value || '';
 
-			output += '<div class="css-rule" style="margin-bottom:5px;">'+
+			output += '<div class="css-rule" style="margin-top:3px;">'+
 				'<div class="column width50"><input type="text" data-cff-css-component="'+cff_esc_attr(component)+'" name="advanced[css][css_rule][]" value="'+cff_esc_attr(rule)+'" class="large" placeholder="CSS rule" list="cff-css-rules-datalist"></div>'+
 				'<div class="column width50">'+
 				'<input type="text" data-cff-css-component="'+cff_esc_attr(component)+'" name="advanced[css][css_value][]" value="'+cff_esc_attr(value)+'" placeholder="CSS value" style="width:calc( 100% - 30px ) !important;">'+
@@ -1285,7 +1286,7 @@
 					}
 					output += fbuilderjQuery.fbuilder['css_rule_pair']( i );
 					output += '</div>';
-					output += '<div style="text-align:right;"><input type="button" class="button-secondary" value="Add rule" onclick="fbuilderjQuery(\'#cff-css-rules-container-'+i+'\').append(fbuilderjQuery.fbuilder.css_rule_pair(\''+i+'\'));"></div>';
+					output += '<div style="text-align:right;margin-top:4px;"><input type="button" class="button-secondary" value="Add rule" onclick="fbuilderjQuery(\'#cff-css-rules-container-'+i+'\').append(fbuilderjQuery.fbuilder.css_rule_pair(\''+i+'\'));"></div>';
 				}
 			}
 		}
@@ -1322,6 +1323,10 @@
 			csslayout:"",
 			advanced:{
 				css:{
+					container:{
+						label: 'Field container div tag',
+						rules:{}
+					},
 					label:{
 						label: 'Field label',
 						rules:{}

@@ -63,12 +63,12 @@ body {
 .form-container {
   font-family: "Syne", sans-serif;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 20px;
 }
 
 .form-column {
-  width: 45%;
+  width: auto;
 }
 
 .form-column h2 {
@@ -97,9 +97,18 @@ body {
   box-sizing: border-box;
 }
 
+#information {
+  padding-right: 44px;
+}
+
+#livraison {
+  border-left: 1px solid white;
+  padding-left: 44px;
+}
+
 .submit-container {
   text-align: center;
-  padding: 20px;
+  margin: 44px 450px;
 }
 
 .submit-container input[type="submit"] {
@@ -116,5 +125,66 @@ body {
 }
 
 .submit-container input[type="submit"]:hover {
+  background-color: #c02e44;
+}
+
+/* Contact Form */
+
+.form-container-contact {
+  font-family: "Syne", sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-column-contact p {
+  margin-bottom: 20px;
+}
+
+.form-column-contact label {
+  display: block;
+  color: black;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 5px;
+}
+
+.form-column-contact input[type="text"],
+.form-column-contact input[type="email"] {
+  background-color: white;
+  width: 383px;
+  height: 71px;
+  padding: 10px;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+.wpcf7-textarea {
+  background-color: white;
+  width: 383px;
+  height: 237px;
+  padding: 10px;
+  border-radius: 7px;
+  box-sizing: border-box;
+}
+
+.submit-container-envoyer {
+  text-align: center;
+  padding-top: 20px;
+  padding-left: 65px;
+}
+
+.submit-container-envoyer input[type="submit"] {
+  font-family: "Syne", sans-serif;
+  font-size: 15px;
+  background-color: #e0b9b4;
+  color: white;
+  width: 198px;
+  height: 55px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.submit-container-envoyer input[type="submit"]:hover {
   background-color: #c02e44;
 }

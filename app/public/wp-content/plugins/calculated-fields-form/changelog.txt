@@ -1,5 +1,12 @@
 == Changelog ==
 
+= 5.2.19 =
+
+* Enhances the CSS edition.
+* Allows controlling the design of the DIV tags that contain the fields' components.
+* Fixes a minor issue in the CSS rules applied to the form title and description.
+* Introduces new form templates for the Pay Raise Percent Calculator and Life Insurance Calculator.
+
 = 5.2.18 =
 
 * Refines CSS styling for form titles and descriptions.

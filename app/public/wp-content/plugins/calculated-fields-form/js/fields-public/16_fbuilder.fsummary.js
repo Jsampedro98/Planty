@@ -18,7 +18,7 @@
 					    l = p.length;
 					if(l)
 					{
-						var str = '<div class="fields '+cff_esc_attr(me.csslayout)+' '+me.name+' cff-summary-field" id="field'+me.form_identifier+'-'+me.index+'">'+((!/^\s*$/.test(me.title)) ? '<h2 style="'+cff_esc_attr(me.getCSSComponent('label'))+'">'+me.title+'</h2>': '')+'<div id="'+me.name+'"></div></div>';
+						var str = '<div class="fields '+cff_esc_attr(me.csslayout)+' '+me.name+' cff-summary-field" id="field'+me.form_identifier+'-'+me.index+'" style="'+cff_esc_attr(me.getCSSComponent('container'))+'">'+((!/^\s*$/.test(me.title)) ? '<h2 style="'+cff_esc_attr(me.getCSSComponent('label'))+'">'+me.title+'</h2>': '')+'<div id="'+me.name+'"></div></div>';
 
 						return str;
 					}

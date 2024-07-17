@@ -16,3 +16,41 @@
 [01-Jul-2024 10:05:31 UTC] PHP Warning:  Undefined variable $qsid in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\plugins\child-theme-configurator\includes\classes\CSS.php on line 971
 [01-Jul-2024 10:16:46 UTC] PHP Warning:  filemtime(): stat failed for C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public/wp-content/themes/planty/css/theme.css in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\themes\planty\functions.php on line 14
 [01-Jul-2024 10:16:46 UTC] PHP Warning:  filemtime(): stat failed for C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public/wp-content/themes/planty/css/theme.css in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\themes\planty\functions.php on line 14
+[14-Jul-2024 14:40:29 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, function "oceanwp_child_enqueue_parent_style" not found or invalid function name in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php:324
+Stack trace:
+#0 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#2 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\script-loader.php(2265): do_action('wp_enqueue_scri...')
+#3 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#6 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\general-template.php(3050): do_action('wp_head')
+#7 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\themes\planty\header.php(15): wp_head()
+#8 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\template.php(810): require_once('C:\\Users\\Koruno...')
+#9 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\template.php(745): load_template('C:\\Users\\Koruno...', true, Array)
+#10 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\general-template.php(48): locate_template(Array, true, true, Array)
+#11 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(9): get_header()
+#12 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\template-loader.php(106): include('C:\\Users\\Koruno...')
+#13 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Koruno...')
+#14 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\index.php(17): require('C:\\Users\\Koruno...')
+#15 {main}
+  thrown in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php on line 324
+[14-Jul-2024 14:41:50 UTC] PHP Fatal error:  Uncaught TypeError: call_user_func_array(): Argument #1 ($callback) must be a valid callback, function "oceanwp_child_enqueue_parent_style" not found or invalid function name in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php:324
+Stack trace:
+#0 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#1 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#2 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\script-loader.php(2265): do_action('wp_enqueue_scri...')
+#3 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php(324): wp_enqueue_scripts('')
+#4 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#5 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#6 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\general-template.php(3050): do_action('wp_head')
+#7 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\themes\planty\header.php(15): wp_head()
+#8 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\template.php(810): require_once('C:\\Users\\Koruno...')
+#9 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\template.php(745): load_template('C:\\Users\\Koruno...', true, Array)
+#10 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\general-template.php(48): locate_template(Array, true, true, Array)
+#11 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(9): get_header()
+#12 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\template-loader.php(106): include('C:\\Users\\Koruno...')
+#13 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Koruno...')
+#14 C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\index.php(17): require('C:\\Users\\Koruno...')
+#15 {main}
+  thrown in C:\Users\Koruno\Desktop\Pro\OpenClassrooms\Sites Projets Cours\Planty\app\public\wp-includes\class-wp-hook.php on line 324

@@ -263,6 +263,28 @@ if ( ! class_exists( 'CPCFF_INSTALLER' ) ) {
 			$dirname = self::_create_dir_bk();
 
 			if ( $dirname ) {
+
+				// Delete outdated files
+				$files = scandir( $dirname );
+				if ( $files ) {
+					foreach ( $files as $file ) {
+						try {
+							if (
+								is_file( $dirname . '/' . $file ) &&
+								'json' == strtolower( pathinfo( $file, PATHINFO_EXTENSION ) ) &&
+								false != ( $time = filemtime( $dirname . '/' . $file ) ) &&
+								10 * 24 * 60 * 60 < ( time() - $time )
+							) {
+								unlink( $dirname . '/' . $file );
+							}
+						} catch( Exception $err ) {
+							continue;
+						} catch( Error $err ) {
+							continue;
+						}
+					}
+				}
+
 				global $wpdb;
 
 				$wpdb->suppress_errors();

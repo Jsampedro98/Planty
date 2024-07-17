@@ -4,7 +4,7 @@ Donate link: http://cff.dwbooster.com
 Tags: form,quote form,contact form,form builder,calculator form
 Requires at least: 3.0.5
 Tested up to: 6.6
-Stable tag: 5.2.18
+Stable tag: 5.2.19
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -452,6 +452,13 @@ A: There are multiple alternatives, by using the [PDF generator add-on](https://
 
 == Changelog ==
 
+= 5.2.19 =
+
+* Enhances the CSS edition.
+* Allows controlling the design of the DIV tags that contain the fields' components.
+* Fixes a minor issue in the CSS rules applied to the form title and description.
+* Introduces new form templates for the Pay Raise Percent Calculator and Life Insurance Calculator.
+
 = 5.2.18 =
 
 * Refines CSS styling for form titles and descriptions.
@@ -485,9 +492,3 @@ A: There are multiple alternatives, by using the [PDF generator add-on](https://
 * Include the internationalization WordPress function in some missed texts.
 * Fixes a warning message handling the form height.
 * Modifies the form importing module (Professional, Developer, and Platinum plugin versions).
-
-= 5.2.13 =
-
-* Allows accessing the public forms from the forms list.
-* Improves the forms builder interface and forms preview.
-* Fixes an issue with datepicker in cached forms.

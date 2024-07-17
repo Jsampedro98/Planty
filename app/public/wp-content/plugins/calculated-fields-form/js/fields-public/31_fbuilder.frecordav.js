@@ -43,7 +43,7 @@
 					var max_time_formatted = this._format_time_component(this.max_time),
 						time_formatted = ( this._has_hours_component() ? '00:' : '')+'00:00';
 
-					return '<div class="fields '+cff_esc_attr(this.csslayout)+' '+this.name+' cff-record-av-field" id="field'+this.form_identifier+'-'+this.index+'">' +
+					return '<div class="fields '+cff_esc_attr(this.csslayout)+' '+this.name+' cff-record-av-field" id="field'+this.form_identifier+'-'+this.index+'" style="'+cff_esc_attr(this.getCSSComponent('container'))+'">' +
 					'<label for="'+this.name+'_record_btn" style="'+cff_esc_attr(this.getCSSComponent('label'))+'">'+this.title+''+((this.required)?"<span class='r'>*</span>":"")+'</label>' +
 					'<div class="dfield">' +
 					'<input type="file" id="'+this.name+'" name="'+this.name+'[]" class="hide-strong" />' +

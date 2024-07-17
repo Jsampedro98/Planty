@@ -1,4 +1,4 @@
-	$.fbuilder['version'] = '5.2.18';
+	$.fbuilder['version'] = '5.2.19';
 	$.fbuilder['controls'] = $.fbuilder['controls'] || {};
 	$.fbuilder['forms'] = $.fbuilder['forms'] || {};
 	$.fbuilder['css'] = $.fbuilder['css'] || {};
@@ -714,7 +714,7 @@
 					$.fbuilder['getCSSComponent'](this, 'buttons_hover', true, '#'+form_id+' .pbNext:hover,#'+form_id+' .pbPrevious:hover,#'+form_id+' .pbSubmit:hover', id);
 
 				    return ( id in $.fbuilder.css ? '<style>' + $.fbuilder.css[id].join('') + '</style>' : '') + // Include the fields CSS
-					'<div class="fform" id="field">'+( !/^\s*$/.test( this.title ) ? '<'+this.titletag+' class="cff-form-title" style="'+css+$.fbuilder['getCSSComponent'](this, 'title')+'">'+this.title+'</'+this.titletag+'>' : '' )+( !/^\s*$/.test( this.description ) ? '<span class="cff-form-description" style="'+css+$.fbuilder['getCSSComponent'](this, 'description')+'">'+this.description+'</span>' : '' )+'</div>';
+					'<div class="fform" id="field">'+( !/^\s*$/.test( this.title ) ? '<'+this.titletag+' class="cff-form-title" style="'+css+cff_esc_attr($.fbuilder['getCSSComponent'](this, 'title'))+'">'+this.title+'</'+this.titletag+'>' : '' )+( !/^\s*$/.test( this.description ) ? '<span class="cff-form-description" style="'+css+cff_esc_attr($.fbuilder['getCSSComponent'](this, 'description'))+'">'+this.description+'</span>' : '' )+'</div>';
 				},
                 after_show:function( id ){
                     // Common validators
