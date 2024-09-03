@@ -65,6 +65,11 @@ cff_forms_templates = {
             "description": "Calculates the maximum area of a plot based on the size of its sides. Calculates the area of a polygon of n-sides (3<=n).",
             "id": 30
         }, {
+            "title": "Storage Requirements",
+            "category": "Basic Operations",
+            "description": "Calculates the area required for furniture storage.",
+            "id": 45
+        }, {
             "title": "Automobile Information",
             "category": "Basic Operations",
             "description": "Collects automobiles' makes, models, and other information. It uses datalists to facilitate data entry for users.",
@@ -89,6 +94,16 @@ cff_forms_templates = {
             "category": "Dates Operations",
             "description": "Calculates time to retirement based on age of bird and retirement age.",
             "id": 41
+        }, {
+            "title": "Pet Age",
+            "category": "Dates Operations",
+            "description": "Calculates pet age in human years.",
+            "id": 52
+        }, {
+            "title": "Booking Form",
+            "category": "Dates Operations",
+            "description": "Booking form based on date interval, number of people, rooms, and additional services.",
+            "id": 44
         }, {
             "title": "Ideal Weight Calculator",
             "category": "Health",
@@ -135,6 +150,16 @@ cff_forms_templates = {
             "description": "Calculates the daily calories you should eat to reach a weight goal.",
             "id": 29
         }, {
+            "title": "Hip-to-Waist Ratio",
+            "category": "Health",
+            "description": "Hip to Waist Ratio (HWR) is an essential indicator of the body’s fat distribution and overall health.",
+            "id": 46
+        }, {
+            "title": "Percentile Deviation",
+            "category": "Health",
+            "description": "Calculate the percentile deviation of a baby's height based on their age in months.",
+            "id": 54
+        }, {
             "title": "Lease Calculator",
             "category": "Financial",
             "description": "Lease calculator based on loan amount, residual value, interest rate, and time interval.",
@@ -174,6 +199,36 @@ cff_forms_templates = {
             "category": "Financial",
             "description": "Life Insurance Calculator calculate life insurance based on age, annual income, number of dependents, and current liabilities.",
             "id": 43
+        }, {
+            "title": "Home Energy Savings",
+            "category": "Financial",
+            "description": "Calculate the potential savings from undergoing a home energy improvement.",
+            "id": 47
+        }, {
+            "title": "Car Payment Calculator",
+            "category": "Financial",
+            "description": "Tool for dealerships looking to assist customers with automobile financing.",
+            "id": 48
+        }, {
+            "title": "Retirement Age Calculator",
+            "category": "Financial",
+            "description": "Calculate the age when the person will meet the minimum required years of work.",
+            "id": 49
+        }, {
+            "title": "Net Salary Calculator",
+            "category": "Financial",
+            "description": "Calculate the net salary based on gross salary and country.",
+            "id": 53
+        }, {
+            "title": "Transportation Cost",
+            "category": "Transportation",
+            "description": "Basic algorithm to calculate transportation cost.",
+            "id": 50
+        }, {
+            "title": "Select a Truck for a Move",
+            "category": "Transportation",
+            "description": "Select a truck for a move based on the weight and volume of the load.",
+            "id": 51
         }
     ],
     "pro": [

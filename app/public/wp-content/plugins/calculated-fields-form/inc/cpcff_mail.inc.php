@@ -162,6 +162,28 @@ if ( ! class_exists( 'CPCFF_MAIL' ) ) {
 				$headers[] = "From: {$from}";
 			}
 
+			try {
+				$replyto = CPCFF_AUXILIARY::parsing_fields_on_text(
+					$fields,
+					$params,
+					preg_replace(
+						"/(fieldname\d+)\s*%>/i",
+						"$1_value%>",
+						$form_obj->get_option( 'fp_reply_to_emails', '' )
+					),
+					'',
+					'plain text',
+					$params['itemnumber']
+				)['text'];
+
+				$replyto = explode( ',', preg_replace( ['/\s/', '/\,+/'], ['', ','], $replyto ) );
+				$replyto = array_filter( $replyto, 'is_email' );
+			} catch ( Exception $err ) {}
+
+			if ( ! empty( $replyto ) ) {
+                $headers[] = "Reply-To: " . implode( ',', $replyto );
+			}
+
 			$headers = self::_modify_encoding_header( $headers );
 
 			// Static file attachment.

@@ -1,4 +1,4 @@
-	$.fbuilder['version'] = '5.2.19';
+	$.fbuilder['version'] = '5.2.32';
 	$.fbuilder['controls'] = $.fbuilder['controls'] || {};
 	$.fbuilder['forms'] = $.fbuilder['forms'] || {};
 	$.fbuilder['css'] = $.fbuilder['css'] || {};
@@ -207,7 +207,7 @@
 									ff.attr('type') != 'radio' &&
 									ff.attr('type') != 'checkbox' &&
 									ff.closest('[uh]').length == 0 /* FIXES AUTO-OPEN TOOLTIPS */
-								) ff.focus();
+								) ff.trigger('focus');
 							}
 							var _wScrollTop = $(window).scrollTop(),
 								_viewportHeight = $(window).height(),
@@ -221,6 +221,22 @@
 				);
 
 			} else {
+				if( pageDom.find(':input.cpefb_error:hidden').length ) {
+					let mssg = [];
+
+					pageDom.find('.cpefb_error.message:not(:empty)').each(function(){
+						let e = $(this),
+							l = e.closest('.fields').children('label'),
+							t = l ? l.text() : '';
+
+						mssg.push( '<b>'+t+(t.length ? ': ' : '')+'</b>'+e.text());
+					});
+
+					if(mssg.length) {
+						$( 'body' ).append( '<div class="cff-error-dlg">'+mssg.join('<br>')+'</div>' ).one('click', $.fbuilder.closeErrorDlg);
+					}
+				}
+
 				formDom.validate().focusInvalid();
 			}
 
@@ -385,7 +401,7 @@
 			errorElement: "div",
 			errorPlacement: function(e, element)
 				{
-					var _parent = element.closest( '.dfield' ),
+					var _parent = element.closest( '.uh_phone,.dfield' ),
 						_uh =  _parent.find( 'span.uh:visible' ),
 						_arg = {'position' : 'absolute'},
 						_t  = _parent.find('input[type="button"],input[type="reset"],input[type="text"],input[type="number"],input[type="email"],input[type="file"],input[type="color"],input[type="date"],input[type="password"],input[type="email"],select,textarea');
@@ -597,7 +613,7 @@
 				$( '#fieldlist'+opt.identifier).find(".pbSubmit").off('click').on("keyup", function(evt){
 					if(evt.which == 13 || evt.which == 32) $(this).trigger('click');
 				}).on("click", { 'identifier' : opt.identifier }, function(evt){
-					$(this).closest("form").submit();
+					$(this).closest("form").trigger('submit');
 				});
 
 				if (i>0)
@@ -1083,6 +1099,27 @@
 			gotopage(page, form);
 			form.trigger('cff-form-validation', false);
 			enabling_form();
+			$( '.cff-error-dlg' ).remove();
+			$( document ).off('click', $.fbuilder.closeErrorDlg);
+			setTimeout(function(){ $( document ).on('click', $.fbuilder.closeErrorDlg); }, 500);
+			try {
+				let errorList = form.validate().errorList,
+					mssg = [];
+				errorList.forEach( (e) => {
+					try {
+						let aux = function(v){
+								return $( '<div></div>' ).html(v).text();
+							},
+							l = getField( e.element.name.match(/fieldname\d+_\d+/)[0] ).title;
+						l = aux(l).replace(/\:\s*$/, '');
+						l = '<b>'+(l.length  ? l+': ' : '')+'</b>'+aux(e.message);
+						mssg.push( l );
+					} catch(err){}
+				} );
+				if ( mssg.length ) {
+					$( 'body' ).append( '<div class="cff-error-dlg">'+mssg.join('<br>')+'</div>' );
+				}
+			} catch ( err ) {}
 			return false;
 		}
 
@@ -1196,3 +1233,5 @@
 			} );
 		} catch( err ){}
 	});
+
+	$.fbuilder.closeErrorDlg = function(){$('.cff-error-dlg').remove();};

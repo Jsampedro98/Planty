@@ -335,10 +335,13 @@
     {
         try
         {
-            var o = $('#'+$.fbuilder['forms'][_getForm(f)].formId), c;
+			var o = $('#'+$.fbuilder['forms'][_getForm(f)].formId), c;
             if(o.length)
             {
-                c = o.find('.pbreak:visible').attr('page');
+                let c = o.find('.pbreak:visible').attr('page'),
+					m = o.find('.pbreak:last').attr('page');
+
+				p = Math.min(Math.max(p, 0),m);
                 $.fbuilder.goToPage({'form':o,'from':c,'to':p, 'forcing' : true});
             }
         } catch(err) { if('console' in window) console.log(err); }
@@ -426,10 +429,10 @@
 											let first_field = $("#fieldlist"+fid+" .pb0").find(".field:eq(0)");
 											if ( first_field.hasClass('hasDatepicker') ) {
 												first_field.datepicker( 'option', 'showOn', 'none' );
-												first_field.focus();
+												first_field.trigger('focus');
 												first_field.datepicker( 'option', 'showOn', 'focus' );
-												first_field.blur();
-											} else  first_field.focus();
+												first_field.trigger('blur');
+											} else  first_field.trigger('focus');
 										}
 										catch(e){}
 									}

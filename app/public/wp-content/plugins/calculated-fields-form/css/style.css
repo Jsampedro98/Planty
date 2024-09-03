@@ -220,6 +220,7 @@
 #fbuilder .frecordav .cff-record-max-time{display:inline-block;color:red;}
 
 #fbuilder .fqrcode .dfield::before{content:"\002AF4\002AF4"; font-size:38px;}
+#fbuilder .fdatatableds table{width:100%;min-height:30px;border: 1px solid #CDCDCD;}
 
 #fbuilder .frepeater .cff-repeater-field-btn{padding:5px;}
 #fbuilder .frepeater .cff-repeater-field-add{margin-right:10px;}
@@ -265,6 +266,7 @@
 #fbuilder .sticker i.sticker-1{display:none;}
 #fbuilder .sticker i.sticker-2{width:32px;}
 #fbuilder .sticker i.sticker-3{width:21px;}
+#fbuilder .sticker i.sticker-x{width:15px;background-color:#72aee661;}
 #fbuilder .sticker i.sticker-4{width:15px;}
 #fbuilder .fhtml {border:1px solid #CDCDCD;min-height:16px;border-radius:2px;}
 

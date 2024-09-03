@@ -240,7 +240,13 @@ if ( ! class_exists( 'CPCFF_INSTALLER' ) ) {
 
 		private static function _create_dir_bk() {
 			try {
-				$dirname = WP_PLUGIN_DIR.'/'.self::$bk_directory;
+				$dirname = wp_get_upload_dir()['basedir'] . '/' . self::$bk_directory;
+
+				// Compatibilty with previuous plugin installation.
+				$old_dirname = WP_PLUGIN_DIR.'/'.self::$bk_directory;
+				if ( file_exists( $old_dirname ) ) rename( $old_dirname, $dirname );
+				// End of compatibilty code.
+
 				if ( !file_exists( $dirname ) ) mkdir( $dirname );
 				if ( is_dir( $dirname ) ) {
 					if ( ! file_exists( $dirname . '/.htaccess' ) ) {

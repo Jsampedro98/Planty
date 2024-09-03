@@ -408,11 +408,11 @@ body{
 
 @media print, screen and (min-width: 640px) {
 	#fbuilder .left_aligned .fields:not(.section_breaks)>label:not(:empty),
-	#fbuilder [id*="fieldlist"]:not(.left_aligned) .left_aligned.fields:not(.section_breaks)>label:not(:empty){float:left;width:35%;padding-right:10px;text-align:left;}
+	#fbuilder [id*="fieldlist"]:not(.left_aligned) .left_aligned.fields:not(.section_breaks)>label:not(:empty){float:left;width:35%;padding-right:10px;padding-top:5px;text-align:left;}
 	#fbuilder .left_aligned .fields label:not(:empty) + .dfield,
 	#fbuilder [id*="fieldlist"]:not(.left_aligned) .left_aligned.fields label:not(:empty) + .dfield{float:left;width:65%;}
 	#fbuilder .right_aligned .fields:not(.section_breaks)>label:not(:empty),
-	#fbuilder [id*="fieldlist"]:not(.right_aligned) .right_aligned.fields:not(.section_breaks)>label:not(:empty){float:left;width:35%;text-align:right;padding-right:10px;}
+	#fbuilder [id*="fieldlist"]:not(.right_aligned) .right_aligned.fields:not(.section_breaks)>label:not(:empty){float:left;width:35%;text-align:right;padding-right:10px;padding-top:5px;}
 	#fbuilder .right_aligned .fields label:not(:empty) + .dfield,
 	#fbuilder [id*="fieldlist"]:not(.right_aligned) .right_aligned.fields label:not(:empty) + .dfield{float:left;width:65%;}
 }
@@ -462,6 +462,10 @@ body{
 #fbuilder div.cpefb_error:after{width: 0;height: 0;border-left: 10px solid transparent;border-right: 10px solid transparent;border-bottom: 10px solid #dc3545 !important;content:"";position:absolute;top:-8px;left:10px;z-index:1000;}
 
 #fbuilder .cpefb_error.message:empty{display:none !important;}
+
+.cff-error-dlg{display:inline-block!important;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);visibility:visible!important;width:500px;max-width:90%;box-sizing:border-box;padding:20px;height:auto;max-height:80%;overflow-y:auto;color:#a94442;border:1px solid transparent;border-radius:4px;background-color:#f2dede;border-color:#ebccd1;font-family:Arial, Helvetica, sans-serif;cursor:pointer;z-index:99999;}
+.cff-error-dlg:before{content:'X';position:absolute;right:5px;top:5px;opacity:0.5;}
+.cff-error-dlg:hover:before{opacity:1;}
 
 .ui-datepicker{z-index:99999 !important;min-width:280px;max-width:320px;}
 .ui-datepicker *{font-size:14px !important;}
@@ -696,7 +700,8 @@ body{
 #fbuilder .cff-dropdown-field .select2 span img,
 #fbuilder .cff-dropdown-field .select2-dropdown span img{height:20px;margin-right:5px;}
 
-#fbuilder .select2-selection--single .select2-selection__rendered span{white-space:nowrap;text-overflow:ellipsis;max-width:100%;display:block !important;overflow:hidden;}
+#fbuilder .select2-selection--single .select2-selection__rendered,
+#fbuilder .select2-selection--single .select2-selection__rendered span{white-space:nowrap !important;text-overflow:ellipsis;max-width:100%;display:block !important;overflow:hidden;}
 
 /* VIEWERS */
 #fbuilder .cff-image-viewer{max-width:100%;}

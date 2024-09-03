@@ -66,7 +66,7 @@
 	};
 
     $.fbuilder['printFields'] = function(){
-		var h = '<style>*{font-family:sans-serif;font-size:14px;}.developer-note:not(:empty){font-style:italic;margin-top:5px;display:block;font-size:90%;clear:both;}.developer-note:not(:empty)::before{content: \'Developer note: \';font-weight:bold;}</style><div><b>field name (title) [Exclude from submission]</b></div><hr />',
+		var h = '<style>*{font-family:sans-serif;font-size:14px;}.developer-note:not(:empty){font-style:italic;margin-top:5px;display:block;font-size:90%;clear:both;}.developer-note:not(:empty)::before{content: \'Developer note: \';font-weight:bold;}</style><div><input type="search" name="cff-field-filter" style="width:100%;min-height:28px;" placeholder="Type field name or label" /></div><hr /><div><b>field name (title) [Exclude from submission]</b></div><hr />',
 			w,
 			o = {};
 
@@ -75,20 +75,33 @@
 			t = ( 'title' in item ) ? String( item.title ).trim() : '';
 			t = ( '' == t && 'shortlabel' in item ) ? String( item.shortlabel ).trim() : t;
 
-			o[item.name] = '<div style="border-bottom:1px solid #F0F0F0;padding:5px 0;"><a href="javascript:e=window.opener.document.getElementsByClassName(\''+item.name+'\')[0];while(e.closest(\'.collapsed\')) e.closest(\'.collapsed\').classList.remove(\'collapsed\');e.scrollIntoView();e.click();">'+item.name+'</a>'+
+			o[item.name] = '<div style="border-bottom:1px solid #F0F0F0;padding:5px 0;" class="cff-field-information"><a href="javascript:e=window.opener.document.getElementsByClassName(\''+item.name+'\')[0];while(e.closest(\'.collapsed\')) e.closest(\'.collapsed\').classList.remove(\'collapsed\');e.scrollIntoView();e.click();">'+item.name+'</a>'+
 						('' != t ? ' ('+$.fbuilder.htmlEncode(t)+')' : '')+
 						('exclude' in item && item.exclude ? '[EXCLUDED]' : '' )+
 						('_developerNotes' in item && ! /^\s*$/.test(item._developerNotes) ? '<span class="developer-note">'+$.fbuilder.htmlEncode(item._developerNotes)+'</span>' : '')+
 						'</div>';
         });
 
-		$('#fieldlist [class *="fieldname"]').each(function(){
+		$('#fieldlist [class*="fieldname"]').each(function(){
 			h += o[this.className.match(/fieldname\d+/)[0]];
 		});
 
         w = window.open("","cff-fieldlist-popup", "width=500,height=300,scrollbars=1,resizable=1,toolbar=0,titlebar=0,menubar=0");
         w.document.title = 'Fields List';
         w.document.body.innerHTML = h;
+		try {
+			let f = w.document.getElementsByName('cff-field-filter')[0];
+			f.addEventListener('input', function(evt){
+				let v = String( evt.currentTarget.value ).toLowerCase();
+				if ( v.length == 0 ) {
+					$( '.cff-field-information', w.document ).show();
+				} else {
+					$( '.cff-field-information', w.document ).hide();
+					$( '.cff-field-information:contains("' + v + '")', w.document ).show();
+				}
+			});
+		} catch ( err ) {}
+
     };
 
 	$.fbuilder[ 'htmlEncode' ] = window[ 'cff_esc_attr' ] = function(value)
@@ -422,6 +435,7 @@
 					setTimeout(function(){
 						if( 'codeEditor' in wp)
 						{
+							if($('#tabs-3 .CodeMirror').length) return;
 							var cssEditorSettings = wp.codeEditor.defaultSettings ? _.clone( wp.codeEditor.defaultSettings ) : {},
 								editor;
 							cssEditorSettings.codemirror = _.extend(
@@ -646,7 +660,8 @@
 				else
 				{
 					var	email_str = '', // email fields list
-						cu_user_email_field = ($('#cu_user_email_field').attr("def") || '').split( ',' ),
+						cu_user_email_field = $('#cu_user_email_field'),
+						cu_user_email_fields_list = (cu_user_email_field.val() || cu_user_email_field.attr("def") || '').split( ',' ),
 
 						cost_str = '', // fields list for paypal request
 						request_cost = $('#request_cost').attr("def"),
@@ -698,7 +713,7 @@
 						// Email fields
 						if (item.ftype=="femail" || item.ftype=="femailds")
 						{
-                            email_str += '<option value="'+cff_esc_attr(item.name)+'" '+( ( $.inArray( item.name, cu_user_email_field ) != -1 ) ? "selected" : "" )+'>'+cff_esc_attr(item.name+' ('+cff_sanitize(item.title)+')')+'</option>';
+							email_str += '<option value="'+cff_esc_attr(item.name)+'" '+( ( cu_user_email_fields_list.indexOf( item.name ) != -1 ) ? "selected" : "" )+'>'+cff_esc_attr(item.name+' ('+cff_sanitize(item.title)+')')+'</option>';
 						}
 						else
 						{
@@ -722,7 +737,7 @@
 					$.fbuilder[ 'purgeDeletedFields' ]();
 
 					// Assign the email fields to the "cu_user_email_field" list
-					$('#cu_user_email_field').html(email_str);
+					cu_user_email_field.html(email_str);
 
 					// Assign the fields to the "request_cost" list
 					$('#request_cost').html(cost_str);
@@ -742,6 +757,8 @@
 				ffunct.saveData("form_structure");
 // console.timeEnd('debugging');
                 $(document).trigger('cff_reloadItems', items);
+				$(document).on('mouseover', '.arrow.ui-icon.ui-icon-grip-dotted-vertical', function(){ $(this).attr('title', 'Drag and drop handler')});
+				$(document).on('mouseover', '.sticker i', function(){ $(this).attr('title', 'Column identifier')});
 			};
 
 		var fform=function(){};
@@ -832,7 +849,7 @@
 						'<div class="cff-field-settings-tab-body-basic cff-field-settings-tab-body-active">';
 
 					str += '<div><label>Form Category</label><input type="text" class="large" name="calculated-fields-form-category-mirror" id="calculated-fields-form-category-mirror" value="'+cff_esc_attr( $('[name="calculated-fields-form-category"]').val() )+'" list="calculated-fields-form-categories" /></div>'+
-					'<div><label>Form Name</label><input type="text" class="large" name="fTitle" id="fTitle" value="'+cff_esc_attr(me.title)+'" /></div>'+
+					'<div><label>Form Name (Title)</label><input type="text" class="large" name="fTitle" id="fTitle" value="'+cff_esc_attr(me.title)+'" /></div>'+
 					'<div><label>Form Name Tag</label><select class="large" id="fTitleTag" name="fTitleTag">'+
 					['H1', 'H2', 'H3', 'H4', 'H5', 'H6'].reduce(function(o, t){ return o += '<option value="'+t+'" '+(t == me.titletag ? 'SELECTED' : '')+'>'+t+'</option>';}, '')+
 					'</select></div>'+
@@ -1265,7 +1282,7 @@
 
 				if ( 'ftype' in arg ) {
 					// Top Message fields
-					output += '<p style="font-style:italic;">You can customize the appearance of a field\'s components by adding CSS rules. If you require more control over the field\'s styles, you can assign a class name to the field through the <a href="javascript:fbuilderjQuery(\'.cff-field-settings-tab-header-basic\').click();fbuilderjQuery(\'#sCsslayout\').focus();">"Add CSS Layout Keywords"</a> attribute in the "Basic Settings" tab and define it using the "Customize Form Design" attribute in the "Form Settings &gt; Advanced Settings" tab.</p>';
+					output += '<p style="font-style:italic;">You can customize the appearance of a field\'s components by adding CSS rules. If you require more control over the field\'s styles, you can assign a class name to the field through the <a href="javascript:fbuilderjQuery(\'.cff-field-settings-tab-header-basic\').trigger(\'click\');fbuilderjQuery(\'#sCsslayout\').trigger(\'focus\');">"Add CSS Layout Keywords"</a> attribute in the "Basic Settings" tab and define it using the "Customize Form Design" attribute in the "Form Settings &gt; Advanced Settings" tab.</p>';
 				} else {
 					// Top Message form
 				output += '<p style="font-style:italic;">CSS rules are made to the form preview and public website. To input CSS blocks directly, scroll to the <a href="javascript:void(0);" onclick="document.getElementsByClassName(\'cff-editor-container\')[0].scrollIntoView({behavior:\'smooth\', block: \'end\'});">"<span style="font-weight:bold;">Customize Form Design</span>" attribute</a> <span style="font-style:normal; font-weight:bold; font-size:1.3em;">&ShortDownArrow;</span></p>';
@@ -1487,8 +1504,10 @@
 					});
 
                 $(".helpfbuilder").off('click');
-				$(".helpfbuilder").on('click', function()
+				$(".helpfbuilder").on('click', function(evt)
 					{
+						evt.preventDefault();
+						evt.stopPropagation();
 						alert($(this).attr("text"));
 					});
 				$("#sDeveloperNotes").on("keyup", {obj: this}, function(e)
@@ -1509,6 +1528,17 @@
 					$.fbuilder['updateAdvancedSettings'](e.data.obj, $(this).attr('data-cff-css-component'));
 					$.fbuilder.reloadItems({'field':e.data.obj});
 				});
+			},
+
+			showColumnIcon:function()
+			{
+				let output = '';
+				if ( 'csslayout' in this ) {
+					if ( /\b((col\-(lg|md|sm|xs)\-\d+)|(column\d+))\b/i.test( this.csslayout) ) {
+						return '<div class="sticker" title="Has column classes applied"><i class="sticker-x"></i></div>';
+					}
+				}
+				return output;
 			},
 
 			showSpecialData:function()

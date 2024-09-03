@@ -23,6 +23,7 @@
             toDisplay:'iso',
             countries:[],
             defaultCountry:'',
+			dynamic: false,
 			size:"medium",
 			initAdv:function(){
 				delete this.advanced.css.input;
@@ -45,13 +46,14 @@
 							str += '<div class="uh_phone" style="min-width:'+(100/nc*tmp[i].length)+'%"><input type="text" class="field disabled" value="'+cff_esc_attr((tmpv[i])?tmpv[i]:"")+'" maxlength="'+String(tmp[i]).trim().length+'" /><div class="l">'+String(tmp[i]).trim()+'</div></div>';
 					}
 					str += '</div>';
-					return '<div class="fields '+this.name+' '+this.ftype+' '+css_class+'" id="field'+this.form_identifier+'-'+this.index+'" title="'+this.controlLabel('Phone Field')+'"><div class="arrow ui-icon ui-icon-grip-dotted-vertical "></div><div title="Delete" class="remove ui-icon ui-icon-trash "></div><div title="Duplicate" class="copy ui-icon ui-icon-copy "></div><label>'+this.title+''+((this.required)?"*":"")+'</label><div class="dfield">'+str+'<span class="uh">'+this.userhelp+'</span></div><div class="clearer"></div></div>';
+					return '<div class="fields '+this.name+' '+this.ftype+' '+css_class+'" id="field'+this.form_identifier+'-'+this.index+'" title="'+this.controlLabel('Phone Field')+'"><div class="arrow ui-icon ui-icon-grip-dotted-vertical "></div><div title="Delete" class="remove ui-icon ui-icon-trash "></div><div title="Duplicate" class="copy ui-icon ui-icon-copy "></div><label>'+this.title+''+((this.required)?"*":"")+'</label><div class="dfield">'+this.showColumnIcon()+str+'<span class="uh">'+this.userhelp+'</span></div><div class="clearer"></div></div>';
 				},
 			editItemEvents:function()
 				{
 					var evt = [
                         {s:"#sFormat",e:"change keyup", l:"dformat", f:function(el){return (el.val()+'').replace(/^\s+/, '').replace(/\s+$/, '').replace(/\s+/g, ' ')}},
                         {s:"#sCountryComponent",e:"click", l:"countryComponent", f:function(el){return el.is(':checked');}},
+                        {s:"#sDynamic",e:"click", l:"dynamic", f:function(el){return el.is(':checked');}},
                         {s:"[name='sToDisplay']",e:"click", l:"toDisplay", f:function(){return $("[name='sToDisplay']:checked").val();}},
                         {s:"#sCountries",e:"change", l:"countries"},
                         {s:"#sDefaultCountry",e:"change", l:"defaultCountry"},
@@ -68,19 +70,23 @@
 
                     '<label><input type="checkbox" name="sCountryComponent" id="sCountryComponent" '+(this.countryComponent ? 'CHECKED' : '')+'/> Include country code selector</label>'+
 
+                    '<label><input type="checkbox" name="sDynamic" id="sDynamic" '+(this.dynamic ? 'CHECKED' : '')+'/> Make phone number format and length dynamic based on the selected country [<a class="helpfbuilder" text="The plugin dynamically adjusts the phone components and their validation rules. The minimum and maximum allowable digits have been sourced from publicly available information. If you encounter any errors, we kindly ask you to report them through the plugin contact page:\n\nhttps://cff.dwbooster.com/contact-us\n\nThank you for your assistance!">help?</a>]</label>'+
+
                     '<div><label class="column"><input type="radio" name="sToDisplay" value="code" '+(this.toDisplay == 'code' ? 'CHECKED' : '')+' /> Display country code&nbsp;&nbsp;</label>'+
                     '<label class="column"><input type="radio" name="sToDisplay" value="iso" '+(this.toDisplay == 'iso' ? 'CHECKED' : '')+' /> Display country ISO</label></div>'+
                     '<div class="clear"></div>'+
 
                     '<label>Countries</label>'+
                     '<select name="sCountries" id="sCountries" class="large" multiple size="10">';
-                    for(var i in db) output += '<option value="'+cff_esc_attr(i)+'" '+(!this.countries.length || this.countries.indexOf(i) != -1 ? 'SELECTED' : '')+'>'+cff_esc_attr(i)+'</option>';
+
+					let country_codes = Object.keys(db).sort();
+					for(let i in country_codes) output += '<option value="'+cff_esc_attr(country_codes[i])+'" '+(!this.countries.length || this.countries.indexOf(country_codes[i]) != -1 ? 'SELECTED' : '')+'>'+cff_esc_attr(country_codes[i])+'</option>';
                     output += '</select><br><br>'+
                     '<input type="button" class="button-secondary large" value="Select all" id="sSelectAll" /><br>'+
 
                     '<label>Select country by default</label>'+
                     '<select name="sDefaultCountry" id="sDefaultCountry" class="large">';
-                    for(var i in db) output += '<option value="'+cff_esc_attr(i)+'" '+(this.defaultCountry == i ? 'SELECTED' : '')+'>'+cff_esc_attr(i)+'</option>';
+                    for(let i in country_codes) output += '<option value="'+cff_esc_attr(country_codes[i])+'" '+(this.defaultCountry == country_codes[i] ? 'SELECTED' : '')+'>'+cff_esc_attr(country_codes[i])+'</option>';
                     output += '</select><hr />';
 
                     return output;

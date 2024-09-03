@@ -5,14 +5,17 @@
 		rearrange: 0,
 		after_show: function(e)
 			{
-				var e  = e || $('#'+this.name), f;
+				var e  = e || $('#'+this.name), f,
+					to_ignore = 0; // Ignores the RecordSet DS and Hidden fields.
                 for(var i = 0, h = this.fields.length; i < h; i++)
 				{
-					f = $('.fields.'+this.fields[i]+this.form_identifier).detach();
+					f = $('.fields.'+this.fields[i]+this.form_identifier+':not(.cff-hidden-field)');
+					if( ! f.length ) { to_ignore++; continue; }
+					f = f.detach();
 					if(this.columns > 1)
 					{
 						f.addClass('column'+this.columns);
-						if(i%this.columns == 0 && !this.rearrange) f.css('clear', 'left');
+						if( ( i - to_ignore ) % this.columns == 0 && ! this.rearrange ) f.css('clear', 'left');
 					}
 					f.appendTo(e);
 				}

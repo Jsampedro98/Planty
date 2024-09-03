@@ -228,7 +228,7 @@ if ( ! class_exists( 'CPCFF_FORM' ) ) {
 					foreach ( $keys as $k ) {
 						$v->$k = sanitize_attributes( $v->$k, $k );
 					}
-				} elseif ( is_string( $v ) && ! in_array( $i, array( 'fcontent', 'eq', 'customstyles' ) ) ) {
+				} elseif ( is_string( $v ) && ! in_array( $i, array( 'fcontent', 'eq', 'customstyles', 'rule' ) ) ) {
 					$v = htmlspecialchars_decode( CPCFF_AUXILIARY::sanitize( $v, true, true ) );
 				}
 
@@ -306,9 +306,7 @@ if ( ! class_exists( 'CPCFF_FORM' ) ) {
 			) {
 				$value = $default;
 			} elseif (
-				'fp_attach_static' == $option ||
-				'cu_attach_static' == $option ||
-				'form_height'	   == $option
+				in_array( $option, [ 'fp_attach_static', 'fp_reply_to_emails', 'cu_attach_static', 'cu_reply_to_emails', 'form_height' ] )
 			) {
 				if ( isset( $this->_settings['extra'][ $option ] ) ) {
 					$value = $this->_settings['extra'][ $option ];
@@ -385,8 +383,14 @@ if ( ! class_exists( 'CPCFF_FORM' ) ) {
 			if ( isset( $params['fp_attach_static'] ) ) {
 				$extra['fp_attach_static'] = $params['fp_attach_static'];
 			}
+			if ( isset( $params['fp_reply_to_emails'] ) ) {
+				$extra['fp_reply_to_emails'] = trim( $params['fp_reply_to_emails'] );
+			}
 			if ( isset( $params['cu_attach_static'] ) ) {
 				$extra['cu_attach_static'] = $params['cu_attach_static'];
+			}
+			if ( isset( $params['cu_reply_to_emails'] ) ) {
+				$extra['cu_reply_to_emails'] = trim( $params['cu_reply_to_emails'] );
 			}
 
 			$data = array(

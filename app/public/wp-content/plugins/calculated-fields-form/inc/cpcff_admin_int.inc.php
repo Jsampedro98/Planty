@@ -12,6 +12,8 @@ require_once CP_CALCULATEDFIELDSF_BASE_PATH . '/inc/cpcff_templates.inc.php';
 
 check_admin_referer( 'cff-form-settings', '_cpcff_nonce' );
 
+$_cpcff_form_settings_nonce = wp_create_nonce( 'cff-form-settings' );
+
 // Load resources.
 wp_enqueue_media();
 if ( function_exists( 'wp_enqueue_code_editor' ) ) {
@@ -24,7 +26,7 @@ if ( ! defined( 'CP_CALCULATEDFIELDSF_ID' ) ) {
 	define( 'CP_CALCULATEDFIELDSF_ID', isset( $_GET['cal'] ) && is_numeric( $_GET['cal'] ) ? intval( $_GET['cal'] ) : 0 );
 }
 
-$admin_url = 'admin.php?page=cp_calculated_fields_form&cal=' . CP_CALCULATEDFIELDSF_ID . '&r=' . mt_rand();
+$admin_url = 'admin.php?page=cp_calculated_fields_form&cal=' . CP_CALCULATEDFIELDSF_ID . '&_cpcff_nonce=' . urlencode( $_cpcff_form_settings_nonce ) . '&r=' . mt_rand();
 
 $cpcff_main = CPCFF_MAIN::instance();
 $form_obj   = $cpcff_main->get_form( intval( $_GET['cal'] ) );
@@ -78,9 +80,8 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 	}
 	?>
 	</h1>
-	<?php $_cpcff_nonce = wp_create_nonce( 'cff-form-settings' ); ?>
 	<form method="post" action="<?php echo esc_attr( $admin_url ); ?>" id="cpformconf" name="cpformconf" class="cff_form_builder">
-		<input type="hidden" name="_cpcff_nonce" value="<?php echo esc_attr( $_cpcff_nonce ); ?>" />
+		<input type="hidden" name="_cpcff_nonce" value="<?php echo esc_attr( $_cpcff_form_settings_nonce ); ?>" />
 		<input name="cp_calculatedfieldsf_post_options" type="hidden" value="1" />
 		<input name="cp_calculatedfieldsf_id" type="hidden" value="<?php echo esc_attr( CP_CALCULATEDFIELDSF_ID ); ?>" />
 
@@ -162,7 +163,7 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 												result = window.confirm('<?php print esc_js( __( 'The action will load the revision selected, the data are not stored will be lose. Do you want continue?', 'calculated-fields-form' ) ); ?>');
 												if(result)
 												{
-													$calculatedfieldsfQuery('<form method="post" action="<?php echo esc_attr( $admin_url ); ?>" id="cpformconf" name="cpformconf" class="cff_form_builder"><input type="hidden" name="_cpcff_nonce" value="<?php echo esc_attr( $_cpcff_nonce ); ?>" /><input name="cp_calculatedfieldsf_id" type="hidden" value="<?php echo esc_attr( CP_CALCULATEDFIELDSF_ID ); ?>" /><input type="hidden" name="cpcff_revision_to_apply" value="'+esc_attr( revision )+'"></form>').appendTo('body').submit();
+													$calculatedfieldsfQuery('<form method="post" action="<?php echo esc_attr( $admin_url ); ?>" id="cpformconf" name="cpformconf" class="cff_form_builder"><input type="hidden" name="_cpcff_nonce" value="<?php echo esc_attr( $_cpcff_form_settings_nonce ); ?>" /><input name="cp_calculatedfieldsf_id" type="hidden" value="<?php echo esc_attr( CP_CALCULATEDFIELDSF_ID ); ?>" /><input type="hidden" name="cpcff_revision_to_apply" value="'+esc_attr( revision )+'"></form>').appendTo('body').submit();
 												}
 											}
 										}
@@ -422,7 +423,8 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 						<tr valign="top">
 							<th scope="row"><?php esc_html_e( 'Thank you page (after sending the message)', 'calculated-fields-form' ); ?></th>
 							<td>
-								<input type="text" name="fp_return_page" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'fp_return_page', CP_CALCULATEDFIELDSF_DEFAULT_fp_return_page ) ); ?>" />
+								<input type="text" name="fp_return_page" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'fp_return_page', CP_CALCULATEDFIELDSF_DEFAULT_fp_return_page ) ); ?>" /><br />
+								<p><i><?php esc_html_e( 'Enter <%from_page%> to reload the form page after submission.', 'calculated-fields-form'); ?></i></p>
 								<div style="border:1px solid #F0AD4E;background:#fffaf4;padding:10px;color:#3c434a;margin-top:20px;margin-bottom:20px;box-sizing:border-box;" class="cff-expand-mssg width75">
 									<p><?php esc_html_e( 'Commercial plugin versions allow you to include a summary of the information collected by the form on the "Thank You Page" content.', 'calculated-fields-form' ); ?> <a href="https://cff.dwbooster.com/download" target="_blank" class="button-primary"><?php esc_html_e( 'Upgrade Now', 'calculated-fields-form' ); ?></a></p>
 								</div>
@@ -440,13 +442,20 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 					<table class="form-table">
 						<tr valign="top">
 							<th scope="row"><?php esc_html_e( '"From" email', 'calculated-fields-form' ); ?></th>
-							<td><input type="text" name="fp_from_email" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'fp_from_email', CP_CALCULATEDFIELDSF_DEFAULT_fp_from_email ) ); ?>" /><br><b><em style="font-size:11px;">Ex: admin@<?php echo esc_html( isset( $_SERVER['HTTP_HOST'] ) ? str_replace( 'www.', '', sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) ) : '' ); ?></em></b></td>
+							<td><input type="text" name="fp_from_email" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'fp_from_email', CP_CALCULATEDFIELDSF_DEFAULT_fp_from_email ) ); ?>" placeholder="<?php print esc_attr( 'Ex. admin@' . str_replace( 'www.', '', $_SERVER["HTTP_HOST"] ) ); ?>" /><br><b><em style="font-size:11px;">Ex. admin@<?php echo esc_html( isset( $_SERVER['HTTP_HOST'] ) ? str_replace( 'www.', '', sanitize_text_field( wp_unslash( $_SERVER['HTTP_HOST'] ) ) ) : '' ); ?></em></b></td>
 						</tr>
 						<tr valign="top">
 							<th scope="row"><?php esc_html_e( 'Destination emails (comma separated)', 'calculated-fields-form' ); ?></th>
 							<td>
-								<input type="text" name="fp_destination_emails" class="width75" value="<?php echo esc_attr($form_obj->get_option('fp_destination_emails', CP_CALCULATEDFIELDSF_DEFAULT_fp_destination_emails)); ?>" />
+								<input type="text" name="fp_destination_emails" class="width75" value="<?php echo esc_attr($form_obj->get_option('fp_destination_emails', CP_CALCULATEDFIELDSF_DEFAULT_fp_destination_emails)); ?>" placeholder="Ex. destination-email@domain.com" />
 								<p><a href="javascript:void(0);" onclick="document.getElementsByName('fp_destination_emails')[0].value='';"><?php esc_html_e( 'If you do not want to receive emails, please leave the "destination" attribute blank.', 'calculated-fields-form' ); ?></a></p>
+							</td>
+						</tr>
+						<tr valign="top">
+							<th scope="row"><?php _e( 'Reply-To (comma separated)', 'calculated-fields-form' ); ?></th>
+							<td>
+								<input type="text" name="fp_reply_to_emails" class="width75" value="<?php echo esc_attr($form_obj->get_option('fp_reply_to_emails', '')); ?>" placeholder="Ex. reply-to-email@domain.com" />
+								<p><em><?php esc_html_e( 'Please enter the email fields\' tags separated by commas (e.g., <%fieldname1%>,<%fieldname2%>). If the attribute is left empty, the plugin will utilize the email fields selected from the "Email field on the form" attribute in the "Email Copy to User" section.', 'calculated-fields-form' ); ?></em></p>
 							</td>
 						</tr>
 						<tr valign="top">
@@ -562,7 +571,7 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 					<div style="font-size:18px; font-weight:400;line-height:28px;">No additional charges, <span style="background:white;display:inline-block;padding:0 5px;"><a href="https://cff.dwbooster.com/terms" target="_blank" style="text-decoration:none;">lifetime updates</a></span>, one copy for all your websites.</div>
 					<div style="font-size:16px; font-weight:400; font-style: italic;">And you get notification emails, payment gateways integration, data and forms exportation, advanced operations and more...</div>
 					<?php
-					print get_option( 'cff-t-t', '<div style="text-align:right; font-size:16px; font-weight:600;margin-top:15px;">To test some of the commercial features of the "Calculated Fields Form" plugin, you can <a class="button-primary" href="admin.php?page=cp_calculated_fields_form&cal=' . CP_CALCULATEDFIELDSF_ID . '&_cpcff_nonce=' . $_cpcff_nonce . '&cff-install-trial=1#cff-upgrade-frame">install the trial version</a></div>' ); // phpcs:ignore WordPress.Security.EscapeOutput
+					print get_option( 'cff-t-t', '<div style="text-align:right; font-size:16px; font-weight:600;margin-top:15px;">To test some of the commercial features of the "Calculated Fields Form" plugin, you can <a class="button-primary" href="admin.php?page=cp_calculated_fields_form&cal=' . CP_CALCULATEDFIELDSF_ID . '&_cpcff_nonce=' . $_cpcff_form_settings_nonce . '&cff-install-trial=1#cff-upgrade-frame">install the trial version</a></div>' ); // phpcs:ignore WordPress.Security.EscapeOutput
 					?>
 				</div>
 				<div style="clear:both;"></div>
@@ -592,7 +601,7 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 						</tr>
 
 						<tr valign="top">
-							<th scope="row"><?php esc_html_e( 'Paypal product name', 'calculated-fields-form' ); ?></th>
+							<th scope="row"><?php esc_html_e( 'Product name', 'calculated-fields-form' ); ?></th>
 							<td><input type="text" name="paypal_product_name" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'paypal_product_name', CP_CALCULATEDFIELDSF_DEFAULT_PRODUCT_NAME ) ); ?>" /></td>
 						</tr>
 
@@ -667,7 +676,7 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 									<option value="0" <?php
 									if ( '1' != $form_obj->get_option( 'paypal_zero_payment', CP_CALCULATEDFIELDSF_DEFAULT_PAYPAL_ZERO_PAYMENT ) ) {
 										echo 'selected';}
-									?>><?php esc_html_e( 'Let the user enter any amount at PayPal (ex: for a donation)', 'calculated-fields-form' ); ?></option>
+									?>><?php esc_html_e( 'Let the user enter any amount at PayPal (Ex. for a donation)', 'calculated-fields-form' ); ?></option>
 									<option value="1" <?php
 									if ( $form_obj->get_option( 'paypal_zero_payment', '1' == CP_CALCULATEDFIELDSF_DEFAULT_PAYPAL_ZERO_PAYMENT ) ) {
 										echo 'selected';}
@@ -763,7 +772,15 @@ $section_nav_bar = '<div class="cff-navigation-sections-menu">
 						</tr>
 						<tr valign="top">
 							<th scope="row"><?php esc_html_e( 'BCC', 'calculated-fields-form' ); ?></th>
-							<td><input type="email" name="cu_user_email_bcc_field" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'cu_user_email_bcc_field', '' ) ); ?>" /></td>
+							<td><input type="email" name="cu_user_email_bcc_field" class="width75" value="<?php echo esc_attr( $form_obj->get_option( 'cu_user_email_bcc_field', '' ) ); ?>" placeholder="Ex. bcc-email@domain.com" />
+							<p><em><?php esc_html_e( 'Email address for Blind Carbon Copy.', 'calculated-fields-form' ); ?></em></p></td>
+						</tr>
+						<tr valign="top">
+							<th scope="row"><?php _e( 'Reply-To (comma separated)', 'calculated-fields-form' ); ?></th>
+							<td>
+								<input type="text" name="cu_reply_to_emails" class="width75" value="<?php echo esc_attr($form_obj->get_option('cu_reply_to_emails', '')); ?>" placeholder="Ex. reply-to-email@domain.com" />
+								<p><em><?php esc_html_e( 'Kindly input email addresses separated by commas. If the field is left empty, the plugin will use the email address provided in the "From" attribute within the "Form Processing / Email Settings" section.', 'calculated-fields-form' ); ?></em></p>
+							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row"><?php esc_html_e( 'Email subject', 'calculated-fields-form' ); ?></th>

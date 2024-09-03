@@ -125,7 +125,7 @@
 				},
         columnsSticker: function()
             {
-                var c = this.columns, s = '<div class="sticker">';
+                var c = this.columns, s = '<div class="sticker" title="Format contained fields in columns">';
                 for(var i = 0; i<c; i++)
                     s += '<i class="sticker-'+c+'"></i>';
                 s += '</div>';

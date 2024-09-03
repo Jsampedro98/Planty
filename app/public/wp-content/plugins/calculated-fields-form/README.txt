@@ -4,7 +4,7 @@ Donate link: http://cff.dwbooster.com
 Tags: form,quote form,contact form,form builder,calculator form
 Requires at least: 3.0.5
 Tested up to: 6.6
-Stable tag: 5.2.19
+Stable tag: 5.2.32
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -56,8 +56,11 @@ Insert as many calculated fields in the form as you need.
 * Distributed with several predefined forms that you can use as a starting point for your projects.
 * Includes several [design templates](https://cff.dwbooster.com/templates).
 * Supports multi-pages forms by inserting page break controls between fields belonging to different pages.
-* Allows the grouping of fields inside container controls (Div and Fieldset).
 * Possible to define [dependency rules](https://cff.dwbooster.com/blog/2020/03/01/dependencies/) between fields in the form, which is very useful in the design of wizards.
+* Allows the grouping of fields inside container controls (Div, Fieldset, and Popups).
+* Enables formatting the form into columns for a more organized layout.
+
+[youtube https://www.youtube.com/watch?v=NSac2cAN8RE]
 
 The "Calculated Fields Form" plugin includes integration with popular page builders:
 
@@ -452,43 +455,41 @@ A: There are multiple alternatives, by using the [PDF generator add-on](https://
 
 == Changelog ==
 
-= 5.2.19 =
+= 5.2.32 =
 
-* Enhances the CSS edition.
-* Allows controlling the design of the DIV tags that contain the fields' components.
-* Fixes a minor issue in the CSS rules applied to the form title and description.
-* Introduces new form templates for the Pay Raise Percent Calculator and Life Insurance Calculator.
+* Modifies the container fields to avoid Hidden, Hidden DS,  and RecordSet DS controls affecting the columns' format.
+* Modifies the Phone controls to adjust its width.
+* Modifies the IRR operation by implementing more robust convergence methods (Developer and Platinum plugin versions)
+* Implements new PayPal Checkout add-on improvements (Platinum plugin distribution).
+* Modifies the Verification Code add-on to allow verifying both email addresses and phone numbers (Platinum plugin version).
 
-= 5.2.18 =
+= 5.2.31 =
 
-* Refines CSS styling for form titles and descriptions.
-* Introduces new form templates.
-* Enhances user interaction by displaying a cursor pointer for radio buttons and checkboxes.
-* Disables the link functionality when a form is embedded within an anchor.
+* Fixes some issues in the Phone control.
+* Adds a new predefined template.
+* Improves the PayPal Checkout add-on (Platinum plugin distribution).
 
-= 5.2.17 =
+= 5.2.30 =
 
-* Implements the predefined class names col-xs-0, col-sm-0, col-md-0, and col-lg-0 to allow hiding fields on mobiles, tables, desktops, and large screens, respectively.
-* Includes a close button in QRCode controls to close the scan dialog.
-* Escape style tags and attributes in form fields to prevent them from affecting the forms builder's functionality.
-* Enhances user experience by automatically scrolling the properties sidebar to the top when selecting a field for editing.
+* Modifies the position of the validation error messages in the form.
+* Reimplements the Phone control to support dynamic field structure and validation rules based on the country code.
+* Adds a new predefined template.
 
-= 5.2.16 =
+= 5.2.29 =
 
-* Modifies the installation module to create a JSON backup file of the forms structures before updating the database.
-* Adds new form templates.
-* Modifies the CFF Elementor Block.
+* Modifies the Equations Advanced Editor to allow the sidebar to collapse to give more space to the code editor.
+* Moves the calculated-fields-form-bk directory for forms backup to the /wp-content/uploads directory.
+* Adds a new predefined template.
 
-= 5.2.15 =
+= 5.2.28 =
 
-* Fixes an issue processing the notification email attachments in the free plugin distribution.
-* Modifies the Form Settings tab, making it easier to customize the form design.
-* Moves the Customize Form Design CSS editor to the Advanced Settings tab in the form settings.
-* Implements new forms template.
-* Modifies the data sources fields (Developer and Platinum plugin versions).
+* Fixes an issue in the calculated fields conditional rules.
+* Modifies the GOTOPAGE operation to prevent users from attempting to jump to non-existent page indexes.
+* Modifies the validation module to display the validation error associated with hidden fields.
+* Modifies the DS fields in the Developer and Platinum plugin versions.
+* Modifies the Stripe Checkout add-on to prevent it affects the WooCommerce integration add-on.
 
-= 5.2.14 =
+= 5.2.27 =
 
-* Include the internationalization WordPress function in some missed texts.
-* Fixes a warning message handling the form height.
-* Modifies the form importing module (Professional, Developer, and Platinum plugin versions).
+* Modifies the left and right-aligned labels.
+* Modifies the ACTIVATEFIELD, IGNOREFIELD, SHOWFIELD, and HIDEFIELD operations to avoid ambiguities when multiple forms are inserted on the page.

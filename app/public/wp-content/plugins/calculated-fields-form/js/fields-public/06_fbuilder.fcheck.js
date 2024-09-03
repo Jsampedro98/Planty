@@ -45,14 +45,25 @@
 					}
 					return '<div class="fields '+cff_esc_attr(this.csslayout)+(this.onoff ? ' cff-switch-container' : '')+' '+this.name+' cff-checkbox-field" id="field'+this.form_identifier+'-'+this.index+'" style="'+cff_esc_attr(this.getCSSComponent('container'))+'"><label style="'+cff_esc_attr(this.getCSSComponent('label'))+'">'+this.title+''+((this.required || 0 < this.min)?"<span class='r'>*</span>":"")+'</label><div class="dfield">'+str+'<div class="clearer"></div>'+(!this.userhelpTooltip ? '<span class="uh" style="'+cff_esc_attr(this.getCSSComponent('help'))+'">'+this.userhelp+'</span>' : '')+'</div><div class="clearer"></div></div>';
 				},
-            enable_disable:function()
+            enable_disable:function( e )
                 {
-                    var m = this;
-                    if(0 < m.max)
+                    var m = this, d = true;
+                    if(0 < m.max )
                     {
-                        var d = true;
-                        if($('[id*="'+m.name+'_"]:checked').length < m.max) d = false;
-                        $('[id*="'+m.name+'_"]:not(:checked)').prop('disabled', d);
+						if ( 1 == m.max ) { // Set radio button behavior.
+							if ( !! e && e.checked ) {
+								$('[id*="'+m.name+'_"]:checked').prop('checked', false);
+								$(e).prop('checked', true);
+							} else {
+								$('[id*="'+m.name+'_"]:checked').each(function(){
+									$(this).prop('checked', d);
+									d = false;
+								});
+							}
+						} else {
+							if($('[id*="'+m.name+'_"]:checked').length < m.max) d = false;
+							$('[id*="'+m.name+'_"]:not(:checked)').prop('disabled', d);
+						}
                     }
                 },
             after_show:function()
@@ -60,7 +71,7 @@
                     var m = this, tmp;
 
                     $(document).off('click','[id*="'+m.name+'_"]')
-					.on('click','[id*="'+m.name+'_"]', function(){m.enable_disable();});
+					.on('click','[id*="'+m.name+'_"]', function(evt){m.enable_disable( evt.target );});
                     m.enable_disable();
 
 					if( m.readonly ) {
