@@ -20,42 +20,29 @@ body {
 
 /*Contact Form 7 */
 
+.wpcf7-response-output {
+  position: absolute;
+}
+
 /* Preorder Ammount */
 
+.Quantites {
+  width: 39px !important;
+  height: 56px !important;
+  margin-bottom: 20px;
+  background-color: white !important;
+}
+
 .wpcf7-form-control-wrap {
-  font-family: "Inter", sans-serif;
+  font-family: "Syne", sans-serif;
+  color: black;
 }
 
-#Quantites-de-fraises {
-  display: block;
-  width: 39px;
-  height: 56px;
-  text-align: center;
-  background-color: white;
-}
-
-#Quantites-de-pamplemousses {
-  display: block;
-  width: 39px;
-  height: 56px;
-  text-align: center;
-  background-color: white;
-}
-
-#Quantites-de-framboises {
-  display: block;
-  width: 39px;
-  height: 56px;
-  text-align: center;
-  background-color: white;
-}
-
-#Quantites-de-citrons {
-  display: block;
-  width: 39px;
-  height: 56px;
-  text-align: center;
-  background-color: white;
+.fruit-choice {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 0px 119px;
 }
 
 /* Preorder Form */
