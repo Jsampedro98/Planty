@@ -12,6 +12,7 @@ function theme_enqueue_styles()
     );
 }
 
+/* Ajout du Hook */
 
 function add_admin_link_to_menu($items, $args)
 {

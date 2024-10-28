@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Contact Form 7 - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-06-28 09:28:26+0000\n"
+"PO-Revision-Date: 2024-10-17 17:27:10+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: fr\n"
 "Project-Id-Version: Plugins - Contact Form 7 - Stable (latest release)\n"
+
+#: modules/checkbox.php:218
+msgid "Too many items are selected."
+msgstr "Trop d’éléments sont sélectionnés."
 
 #: includes/contact-form.php:576
 msgid "Invalid action URL is detected."
@@ -27,7 +31,7 @@ msgstr "https://contactform7.com/2024/02/02/we-end-the-constant-contact-integrat
 msgid "Warning:"
 msgstr "Avertissement : "
 
-#: modules/checkbox.php:285 modules/select.php:217
+#: modules/checkbox.php:299 modules/select.php:217
 msgid "Undefined value was submitted through this field."
 msgstr "Une valeur non définie a été envoyée dans ce champ."
 
@@ -83,6 +87,7 @@ msgid "Contact form not found."
 msgstr "Formulaire de contact non trouvé !"
 
 #: includes/contact-form-functions.php:263 includes/contact-form.php:575
+#: includes/js/index.js:1
 msgid "Error:"
 msgstr "Erreur :"
 
@@ -1323,34 +1328,34 @@ msgstr "La date est antérieure à la date limite minimale."
 msgid "Date format that the sender entered is invalid"
 msgstr "Le format de date utilisé n’est pas valide."
 
-#: modules/checkbox.php:420 modules/date.php:265 modules/number.php:289
+#: modules/checkbox.php:434 modules/date.php:265 modules/number.php:289
 #: modules/select.php:301 modules/text.php:321 modules/textarea.php:205
 msgid "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab."
 msgstr "Pour utiliser la valeur de ce champ dans un champ d’e-mail, vous devez insérer le nom de balise correspondante (%s) dans l’onglet E-mail."
 
-#: modules/checkbox.php:390
+#: modules/checkbox.php:404
 msgid "Make checkboxes exclusive"
 msgstr "Rendre les cases à cocher exclusives."
 
-#: modules/checkbox.php:388
+#: modules/checkbox.php:402
 msgid "Wrap each item with label element"
 msgstr "Entourer chaque élément avec un libellé."
 
-#: modules/checkbox.php:387
+#: modules/checkbox.php:401
 msgid "Put a label first, a checkbox last"
 msgstr "Mettre un libellé puis la case à cocher."
 
-#: modules/checkbox.php:386 modules/select.php:270
+#: modules/checkbox.php:400 modules/select.php:270
 msgid "One option per line."
 msgstr "Une option par ligne."
 
-#: modules/checkbox.php:369 modules/date.php:208 modules/file.php:165
+#: modules/checkbox.php:383 modules/date.php:208 modules/file.php:165
 #: modules/number.php:232 modules/select.php:254 modules/text.php:252
 #: modules/textarea.php:165
 msgid "Required field"
 msgstr "Champ obligatoire"
 
-#: modules/checkbox.php:365 modules/checkbox.php:368 modules/date.php:204
+#: modules/checkbox.php:379 modules/checkbox.php:382 modules/date.php:204
 #: modules/date.php:207 modules/file.php:161 modules/file.php:164
 #: modules/number.php:223 modules/number.php:226 modules/select.php:250
 #: modules/select.php:253 modules/text.php:248 modules/text.php:251
@@ -1358,27 +1363,27 @@ msgstr "Champ obligatoire"
 msgid "Field type"
 msgstr "Type de champ"
 
-#: modules/checkbox.php:354 modules/select.php:240
+#: modules/checkbox.php:368 modules/select.php:240
 msgid "Checkboxes, radio buttons and menus"
 msgstr "Case à cocher, bouton radio et menus"
 
-#: modules/checkbox.php:354 modules/select.php:240
+#: modules/checkbox.php:368 modules/select.php:240
 msgid "https://contactform7.com/checkboxes-radio-buttons-and-menus/"
 msgstr "https://contactform7.com/checkboxes-radio-buttons-and-menus/"
 
-#: modules/checkbox.php:351
+#: modules/checkbox.php:365
 msgid "Generate a form-tag for a group of radio buttons. For more details, see %s."
 msgstr "Générer une balise de groupe de boutons radio. Pour plus de détails, consultez %s."
 
-#: modules/checkbox.php:349
+#: modules/checkbox.php:363
 msgid "Generate a form-tag for a group of checkboxes. For more details, see %s."
 msgstr "Génère un formulaire pour un de groupe de cases à cocher. Pour plus de détails, consultez %s."
 
-#: modules/checkbox.php:336
+#: modules/checkbox.php:350
 msgid "radio buttons"
 msgstr "Boutons radio"
 
-#: modules/checkbox.php:334
+#: modules/checkbox.php:348
 msgid "checkboxes"
 msgstr "Cases à cocher"
 
@@ -1423,14 +1428,14 @@ msgstr "Le code saisi est incorrect."
 msgid "The code that sender entered does not match the CAPTCHA"
 msgstr "Le code entré ne correspond pas au CAPTCHA"
 
-#: modules/acceptance.php:303 modules/checkbox.php:415 modules/date.php:260
+#: modules/acceptance.php:303 modules/checkbox.php:429 modules/date.php:260
 #: modules/file.php:204 modules/number.php:284 modules/quiz.php:249
 #: modules/really-simple-captcha.php:337 modules/select.php:296
 #: modules/submit.php:88 modules/text.php:316 modules/textarea.php:200
 msgid "Insert Tag"
 msgstr "Insérer la balise"
 
-#: modules/acceptance.php:290 modules/checkbox.php:402 modules/date.php:248
+#: modules/acceptance.php:290 modules/checkbox.php:416 modules/date.php:248
 #: modules/file.php:191 modules/number.php:272 modules/quiz.php:236
 #: modules/really-simple-captcha.php:310 modules/really-simple-captcha.php:325
 #: modules/select.php:283 modules/submit.php:75 modules/text.php:303
@@ -1438,7 +1443,7 @@ msgstr "Insérer la balise"
 msgid "Class attribute"
 msgstr "attribut &laquo;class&raquo;"
 
-#: modules/acceptance.php:285 modules/checkbox.php:397 modules/date.php:243
+#: modules/acceptance.php:285 modules/checkbox.php:411 modules/date.php:243
 #: modules/file.php:186 modules/number.php:267 modules/quiz.php:231
 #: modules/really-simple-captcha.php:305 modules/really-simple-captcha.php:320
 #: modules/select.php:278 modules/submit.php:70 modules/text.php:298
@@ -1447,12 +1452,12 @@ msgid "Id attribute"
 msgstr "attribut &laquo;id&raquo;"
 
 #: modules/acceptance.php:275 modules/acceptance.php:278
-#: modules/checkbox.php:381 modules/checkbox.php:384 modules/select.php:265
+#: modules/checkbox.php:395 modules/checkbox.php:398 modules/select.php:265
 #: modules/select.php:268
 msgid "Options"
 msgstr "Options"
 
-#: modules/acceptance.php:265 modules/checkbox.php:376 modules/date.php:214
+#: modules/acceptance.php:265 modules/checkbox.php:390 modules/date.php:214
 #: modules/file.php:171 modules/number.php:238 modules/quiz.php:215
 #: modules/really-simple-captcha.php:295 modules/select.php:260
 #: modules/text.php:258 modules/textarea.php:171

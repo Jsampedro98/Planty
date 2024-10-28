@@ -132,6 +132,12 @@ class Ocean_Extra_New_Theme_Panel {
 			$value = array_map( 'sanitize_text_field', $value );
 			$value = self::validate_panels( $value );
 		}
+
+		// Ensure $value is an array and hold default settings even if all settings are false.
+		if ($value === null || !is_array($value)) {
+			$value = array_fill_keys(array_keys(self::get_panels()), false);
+		}
+
 		update_option( $option, $value );
 
 		wp_send_json_success(
@@ -492,34 +498,59 @@ class Ocean_Extra_New_Theme_Panel {
 	 * Return customizer panels
 	 */
 	public static function get_panels() {
-		$panels = array(
-			'oe_general_panel'        => array(
+		$theme = wp_get_theme();
+		$version = $theme->get( 'Version' );
+
+		$panels = array();
+
+		if ( version_compare( $version, '4.0.0', '>' ) ) {
+			$panels['oe_styles_and_settings_panel'] = array(
+				'label' => esc_html__( 'Site Style & Settings Panel', 'ocean-extra' ),
+			);
+			$panels['oe_colors_panel'] = array(
+				'label' => esc_html__( 'Colors Panel', 'ocean-extra' ),
+			);
+			$panels['oe_site_page_settings_panel'] = array(
+				'label' => esc_html__( 'Site Page Settings Panel', 'ocean-extra' ),
+			);
+			$panels['oe_site_performance_panel'] = array(
+				'label' => esc_html__( 'Site Performance Panel', 'ocean-extra' ),
+			);
+			$panels['oe_seo_settings_panel'] = array(
+				'label' => esc_html__( 'SEO Panel', 'ocean-extra' ),
+			);
+		}
+
+		if ( version_compare( $version, '4.0.0', '<' ) ) {
+			$panels['oe_general_panel'] = array(
 				'label' => esc_html__( 'General Panel', 'ocean-extra' ),
-			),
-			'oe_typography_panel'     => array(
-				'label' => esc_html__( 'Typography Panel', 'ocean-extra' ),
-			),
-			'oe_topbar_panel'         => array(
-				'label' => esc_html__( 'Top Bar Panel', 'ocean-extra' ),
-			),
-			'oe_header_panel'         => array(
-				'label' => esc_html__( 'Header Panel', 'ocean-extra' ),
-			),
-			'oe_blog_panel'           => array(
-				'label' => esc_html__( 'Blog Panel', 'ocean-extra' ),
-			),
-			'oe_sidebar_panel'        => array(
-				'label' => esc_html__( 'Sidebar Panel', 'ocean-extra' ),
-			),
-			'oe_footer_widgets_panel' => array(
-				'label' => esc_html__( 'Footer Widgets Panel', 'ocean-extra' ),
-			),
-			'oe_footer_bottom_panel'  => array(
-				'label' => esc_html__( 'Footer Bottom Panel', 'ocean-extra' ),
-			),
-			'oe_custom_code_panel'    => array(
-				'label' => esc_html__( 'Custom CSS/JS Panel', 'ocean-extra' ),
-			),
+			);
+		}
+
+		// Panels that are included regardless of the theme version
+		$panels['oe_typography_panel'] = array(
+			'label' => esc_html__( 'Typography Panel', 'ocean-extra' ),
+		);
+		$panels['oe_topbar_panel'] = array(
+			'label' => esc_html__( 'Top Bar Panel', 'ocean-extra' ),
+		);
+		$panels['oe_header_panel'] = array(
+			'label' => esc_html__( 'Header Panel', 'ocean-extra' ),
+		);
+		$panels['oe_blog_panel'] = array(
+			'label' => esc_html__( 'Blog Panel', 'ocean-extra' ),
+		);
+		$panels['oe_sidebar_panel'] = array(
+			'label' => esc_html__( 'Sidebar Panel', 'ocean-extra' ),
+		);
+		$panels['oe_footer_widgets_panel'] = array(
+			'label' => esc_html__( 'Footer Widgets Panel', 'ocean-extra' ),
+		);
+		$panels['oe_footer_bottom_panel'] = array(
+			'label' => esc_html__( 'Footer Bottom Panel', 'ocean-extra' ),
+		);
+		$panels['oe_custom_code_panel'] = array(
+			'label' => esc_html__( 'Custom CSS/JS Panel', 'ocean-extra' ),
 		);
 
 		// Apply filters and return
@@ -730,7 +761,7 @@ class Ocean_Extra_New_Theme_Panel {
 				} else {
 					update_option( 'oceanwp_hide_theme_panel_sidebar', false );
 				}*/
-			} elseif ( in_array( $key, array( 'hide_themes_customizer', 'hide_box', 'hide_changelog', 'whitelabel_oceanwp_panel', 'hide_small_nav_menu', 'hide_help_section', 'hide_download_section', 'hide_love_corner_section' ) ) ) {
+			} elseif ( in_array( $key, array( 'hide_themes_customizer', 'hide_info_customizer', 'hide_box', 'hide_changelog', 'whitelabel_oceanwp_panel', 'hide_small_nav_menu', 'hide_help_section', 'hide_download_section', 'hide_love_corner_section' ) ) ) {
 				if ( isset( $params['oceanwp_branding'][ $key ] ) ) {
 					update_option( 'oceanwp_' . $key, true );
 				} else {

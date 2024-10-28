@@ -2,9 +2,8 @@
 
 **Contributors:** The OceanWP Team
 **Requires at least:** WordPress 5.6
-**Tested up to:** WordPress 6.5.5
-=======
-**Stable tag:** 3.5.8
+**Tested up to:** WordPress 6.6.2
+**Stable tag:** 4.0.1
 **Requires PHP:** 7.4
 **License:** GPLv2 or later
 **License URI:** https://www.gnu.org/licenses/gpl-2.0.html

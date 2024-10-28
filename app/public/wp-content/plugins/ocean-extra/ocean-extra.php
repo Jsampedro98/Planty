@@ -3,11 +3,11 @@
  * Plugin Name:         Ocean Extra
  * Plugin URI:          https://oceanwp.org/extension/ocean-extra/
  * Description:         Add extra features and flexibility to your OceanWP theme for a turbocharged premium experience and full control over every aspect of your website.
- * Version:             2.3.0
+ * Version:             2.4.1
  * Author:              OceanWP
  * Author URI:          https://oceanwp.org/
  * Requires at least:   5.6
- * Tested up to:        6.5.5
+ * Tested up to:        6.6
  * Text Domain: ocean-extra
  * Domain Path: /languages
  *
@@ -155,6 +155,9 @@ final class Ocean_Extra {
 			}
 			$required_theme_version = '3.3.3';
 
+			if ( ! empty( $current_theme_version ) && version_compare( $current_theme_version, '3.6.1', '<=' ) ) {
+				include_once $this->plugin_path . '/includes/update-message.php';
+			}
 
 			require_once OE_PATH . '/includes/panel/theme-panel.php';
 
@@ -467,6 +470,7 @@ final class Ocean_Extra {
 			require_once OE_PATH . '/includes/ocean-extra-strings.php';
 			require_once OE_PATH . '/includes/dashboard.php';
 			require_once OE_PATH . '/includes/panel/demos.php';
+			require_once OE_PATH . '/includes/plugins-tab.php';
 			$oe_notification_active_status = get_option( 'oe_notification_active_status', 'no' );
 			if( $oe_notification_active_status == 'no' ) {
 				require_once OE_PATH . '/includes/admin-bar/admin-bar.php';
@@ -474,6 +478,8 @@ final class Ocean_Extra {
 			}
 			require_once OE_PATH . '/includes/adobe-font.php';
 			require_once OE_PATH . '/includes/preloader/customizer.php';
+			require_once OE_PATH . '/includes/customizer/customizer.php';
+			//require_once OE_PATH . '/includes/update-message.php';
 
 			add_action( 'wp_enqueue_scripts', array( $this, 'scripts' ), 999 );
 		}

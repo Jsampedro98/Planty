@@ -2,8 +2,8 @@
 Contributors: oceanwp, apprimit, wpfleek
 Tags: widgets, meta box, metaboxes, metabox, oceanwp
 Requires at least: 5.6
-Tested up to: 6.5.5
-Stable tag: 2.3.0
+Tested up to: 6.6
+Stable tag: 2.4.1
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -215,6 +215,24 @@ You can report problems on [this support forum](https://wordpress.org/support/pl
 11. WordPress Menu icons support feature, various icon libraries support.
 
 == Changelog ==
+
+= 2.4.1 - OCT 21 2024 =
+- Fixed: OceanWP Metabox Settings: Logo: Customizer logo doesn't get overridden on individual level (main Customizer logo always displayed).
+- Fixed: OceanWP Customizer: General Options tab not displayed with version 3.6.1 and lower.
+- Fixed: Plugin Update Notice: Breaking layout display in the plugins area on multisite.
+
+= 2.4.0 - OCT 16 2024 =
+- NEW: Customizer: Library upgraded to default WordPress ReactJS.
+- NEW: Customizer: User Interface.
+- Added: Customizer: Main panel icons for improved visual navigation and user experience.
+- Added: Customizer: Panel grouping based website role for improved visual navigation and user experience.
+- Added: OceanWP Panel: Customizer: New panels users can disable / enable per need for faster loading and visual navigation.
+- Removed: Customizer: Legacy PHP Controls.
+- Removed: OceanWP Panel: Customizer: Panels: Legacy panels.
+
+= 2.3.1 - OCT 11 2024 =
+- Added: Conditional checks for future updates.
+- Updated: Compatibility: WordPress version number.
 
 = 2.3.0 - JUL 03 2024 =
 - Fixed: Potential vulnerability patched: Report by Patchstack from June 25th 2024.

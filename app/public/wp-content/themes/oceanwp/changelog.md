@@ -1,5 +1,44 @@
 # OceanWP Changelog
 
+### _2024.10.21_ - 4.0.1
+- **Fixed**:: Customizer: Enable Google Fonts option doesn't inherit old settings from version 3.6.1 and lower.
+- **Fixed**:: Customizer: Footer Copyright: Typography: option for footer menu missing.
+- **Fixed**:: Customizer: Performance: incorrect help document link.
+- **Fixed**:: Function: Enqueue Google Fonts: incorrect conditional check for enqueueing.
+- **Fixed**:: WooCommerce: Single Product: Variable Products: parent product added to cart instead of product variation.
+- **Fixed**:: Page Title: Page Title heading and subheading colors reset after update.
+- **Fixed**:: WooCommerce: Archives: Hover Style: Add to Cart button colors.
+- **Removed**:: Theme: method of loading Google fonts via a json file due to increased API calls. PHP method reinstated.
+- **Removed**:: Customizer: Controls: Typography: dynamic display of available font weights for simplicity. Standard font weights reinstated.
+- **Removed**:: Customizer: Controls: Typography: individual font subset for simplicity (global font Google fonts subset options available).
+
+### _2024.10.16_ - 4.0.0
+- **NEW**:: Customizer: Library upgraded to default WordPress ReactJS.
+- **NEW**:: Customizer: Customizer Controls.
+- **NEW**:: Customizer: User Interface.
+- **NEW**:: Customizer: Reorganized settings for improved user experience.
+- **NEW**:: Customizer: Panels: Site Style & Settings, Pages & Special Pages, Colors.
+- **Added**:: Customizer: User documentation: https://docs.oceanwp.org/category/894-oceanwp-customizer
+- **Added**:: Customizer: Enhanced Device Preview support.
+- **Added**:: Customizer: Improved handling of nested settings.
+- **Removed**:: Customizer: Panels: General Options panel in favor of additional, smaller and more intuitive panels.
+- **Removed**:: Customizer: Legacy PHP Controls. (edited)
+
+### _2024.10.08_ - 3.6.1
+- **Updated**:: Magnific Popup library.
+- **Updated**:: WordPress version number for compatibility:
+- **Fixed**:: Potential vulnerability patched: Report by Wordfence from Oct 2nd 2024.
+
+### _2024.09.10_ - 3.6.0
+- **Updated**:: Compatibility: WooCommerce: Template version number for mini-cart.php
+
+### _2024.08.05_ - 3.5.9
+- **Updated**:: WordPress version for compatibility.
+- **Fixed**:: Page Title: 'ocean_page_header_background_image' hook doesn't function with custom background image URL.
+- **Fixed**:: Header: Mobile Header: Sidebar Style: Ocean Popup Login window doesn't display with this mobile header style.
+- **Fixed**:: WooCommerce: Archives: Hover Style: Background color doesn't render on the front.
+- **Fixed**:: Compatibility: WPIDE plugin: Fatal error on plugin activation: Uncaught Error: Call to undefined function oceanwp_theme_panel().
+
 ### _2024.07.12_ - 3.5.8
 - **Updated**:: Compatibility: WooCommerce: Single product featured image template number.
 - **Updated**:: Compatibility: WordPress: version number.

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - Akismet Anti-spam: Spam Protection - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-07-10 22:32:36+0000\n"
+"PO-Revision-Date: 2024-09-15 05:33:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,10 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: fr\n"
 "Project-Id-Version: Plugins - Akismet Anti-spam: Spam Protection - Stable (latest release)\n"
+
+#: views/setup.php:3
+msgid "Choose an Akismet plan"
+msgstr "Choisissez une offre Akismet"
 
 #: class.akismet-admin.php:690
 msgid "This comment was not sent to Akismet when it was submitted because it was caught by the comment disallowed list."
@@ -75,6 +79,14 @@ msgstr[1] "Les indésirables situés dans %1$s datant de plus de %2$d jours son
 msgid "spam folder"
 msgstr "dossier indésirables"
 
+#: views/stats.php:11
+msgid "Akismet detailed stats"
+msgstr "Statistiques détaillées Akismet"
+
+#: views/stats.php:6
+msgid "Back to settings"
+msgstr "Retour aux réglages"
+
 #: views/config.php:264
 msgid "Subscription type"
 msgstr "Type d’Abonnement"
@@ -94,6 +106,11 @@ msgstr "Clé API"
 #: views/config.php:44
 msgid "Akismet stats"
 msgstr "Statistiques Akismet"
+
+#. Author of the plugin
+#: akismet.php
+msgid "Automattic - Anti-spam Team"
+msgstr "Automattic - Équipe Anti-spam"
 
 #: views/notice.php:56
 msgid "WP-Cron has been disabled using the DISABLE_WP_CRON constant. Comment rechecks may not work properly."
